@@ -19,59 +19,49 @@ então não devemos criar um atributo para armazenar esta informação por que e
 >>> t1.alterarNome('Joao')
 >>> t1.Nome
 'Joao'
->>> t1.sensacaoFome
-Faminto
->>> t1.alterarFome()
->>> t1.sensacaoFome
-com muita fome
->>> t1.alterarFome()
->>> t1.sensacaoFome
-fome
->>> t1.alterarFome()
->>> t1.sensacaoFome
-pensando em comida
->>> t1.alterarFome()
->>> t1.sensacaoFome
-com energia suficiente
->>> t1.alterarFome()
->>> t1.sensacaoFome
-satisfeito
->>> t1.alterarFome()
->>> t1.sensacaoFome
-cheio
-
->>> t1.retornar_fome()
 >>> t1.Fome
-7
+0
+>>> t1.alterarFome(0)
+>>> t1.Fome
+3
+>>> t1.alterarSaude(5)
+>>> t1.Saude
+10
+>>> t1.humor()
+6.5
+
 """
-escalaFome = ['Faminto', ' com muita fome', 'fome', 'Pensando em comida',
-                  'com energia suficiente', 'satisfeito', 'cheio']
+
 class BichinhoVirtual:
 
 
     def __init__(self, nome_bichinho : str):
         self.Nome = nome_bichinho
         self.Fome = 0
-        self.sensacaoFome = escalaFome[self.Fome]
         self.Saude = 0
         self.Idade = 0
 
     def alterarNome(self,novo_nome):
        self.Nome = novo_nome
-    def alterarFome(self):
-      self.Fome = (self.Fome + 1)%len(escalaFome)
-      self.sensacaoFome = escalaFome[self.Fome]
-    def alterarSaude(self):
-        pass
-    def alterarIdade(self):
+    def alterarFome(self, sensacaoFome):
+        sensacaoFome += 3
+        self.Fome = sensacaoFome
+
+    def alterarSaude(self, estadoSaude):
+        estadoSaude += 5
+        self.Saude = estadoSaude
+    def alterarIdade(self, tempoDeVida):
+        tempoDeVida += 1
+        self.Idade = tempoDeVida
         pass
     def retornarNome(self):
         print(self.Nome)
-    def retornar_fome(self):
-        print(self.Fome)
+    def retornarFome(self):
+        return self.Fome
     def retornar_saude(self):
         pass
     def retornar_idade(self):
         pass
     def humor(self):
-        pass
+        indiceHumor = (self.Fome + self.Saude)/2
+        return indiceHumor
